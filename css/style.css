@@ -243,7 +243,7 @@ h1 {
 .carousel-caption h1 {
   font-weight: 700;
   font-size: 38px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-shadow: none;
   letter-spacing: -1.5px;
 }
