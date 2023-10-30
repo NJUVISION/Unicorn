@@ -271,7 +271,7 @@ h1 {
   font-size: 20px;
   letter-spacing: -1px;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .features-block {
   margin-top: 40px;
