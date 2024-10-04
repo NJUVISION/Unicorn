@@ -43,15 +43,18 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="page-scroll" href="#page-top">Home</a></li>
-                        <li><a class="page-scroll" href="#results">Show</a></li>
-                        <li><a class="page-scroll" href="#introduction">Details</a></li>
-                        <li><a class="page-scroll" href="#codes">Codes</a></li>
+                        <li><a class="page-scroll" href="#intro">Introduction</a></li>
+                        <li><a class="page-scroll" href="#method">Method</a></li>
+                        <li><a class="page-scroll" href="#exp">Experiments</a></li>
+                        <!-- <li><a class="page-scroll" href="#introduction">Details</a></li>
+                        <li><a class="page-scroll" href="#codes">Codes</a></li> -->
                         <li><a class="page-scroll" href="#team">Team</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 </div>
+
 <div id="inSlider" class="carousel slide carousel-fade" data-ride="carousel">
 <!--     <ol class="carousel-indicators">
         <li data-target="#inSlider" data-slide-to="0" class="active"></li>
@@ -60,92 +63,342 @@
         <div class="item active">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>We Design A Universal<br/>
-                        Multiscale Conditional<br/>
-                        Coding Framework</h1>
-                    <h4>We can compress any point cloud in various contexts.</h4>
+
+                    <div class="col-lg-12 text-center">
+                        <img style="width:7%;" src="./img/unicorn-logo1.png">&nbsp;&nbsp
+                        <img style="width:18%;" src="./img/unicorn-logo2.png">
+
+                        <h1>A Versatile Point Cloud Compressor<br/> 
+                            Using Universal Multiscale Conditional Coding:<br/>
+                            Geoemetry & Attribute
+                        </h1>
+
+                        <!-- <h1 style="font-size:30px"> TPAMI 2024</h1> -->
+
+                        <!-- <div class="is-size-5 publication-authors">
+                            <span style="font-size:16px">
+                              Jianqiang Wang<sup># 1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span  style="font-size:16px">
+                              Ruixiang Xue<sup># 1</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span  style="font-size:16px">
+                              Jiaxin Li<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span  style="font-size:16px">
+                              Dandan Ding<sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span  style="font-size:16px">
+                                Yi Lin<sup>* 3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span>
+                              <span  style="font-size:16px">
+                                Zhan Ma<sup>* 1</sup>
+                              </span>
+                          </div>
+                        
+                          <div style="font-size:16px">
+                            <sup># </sup> Denotes Equal Contribution &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <sup>* </sup> Denotes Corresponding Authors
+                          </div> -->
+
+                        <br>
+                        <div class="is-size-5 publication-authors">
+                            <span style="font-size:24px" ><sup>1</sup> Nanjing University <a href="https://vision.nju.edu.cn/"> Vision Lab </a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size:24px"><sup>2</sup>Hangzhou Normal University</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="font-size:24px"><sup>3</sup>Fudan University</span>
+                          </div>
+
+                          <!-- <div style="font-size:24px">
+                            <sup>1</sup> <a href="https://vision.nju.edu.cn/main.htm"><img style="width:5%;" src="./img/nju.jpg"> </a>
+                            <sup>2</sup> <a href="https://vision.nju.edu.cn/main.htm"><img style="width:5%;" src="./img/hznu.jpg"> </a>
+                            <sup>3</sup> <a href="https://vision.nju.edu.cn/main.htm"><img style="width:5%;" src="./img/fudan.jpeg"> </a>
+                          </div> -->
+
+                          <br>
+                            <a href="https://ieeexplore.ieee.org/document/10682571">
+                              <span style="font-size:20px" >Paper I </span>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  
+                            <a href="https://ieeexplore.ieee.org/document/10682566">
+                                <span style="font-size:20px" >Paper II </span>
+                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <a href="https://github.com/NJUVISION/Unicorn">
+                                <span style="font-size:20px" >Code </span>
+                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <a href="https://github.com/NJUVISION/Unicorn">
+                                <span style="font-size:20px" >Datasets </span>
+                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <a href="https://github.com/NJUVISION/Unicorn">
+                                <span style="font-size:20px" >Results </span>
+                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
                 </div>
             </div>
-            <div class="header-back one"></div>
         </div>
     </div>
 </div>
 
 
-<section id="results", class="results">
+<section id="intro", class="results">
+    <div class="container">
+        <div class="row">
+            <div class="navy-line"></div>
+                <div class="col-lg-12 text-center">
+                    <h2> <b>Abstract</b> </h2>
+                </div>
+                
+                <div class="col-lg-12 text-left" style="font-size:20px">
+                    A universal multiscale conditional coding framework,  <b>Unicorn</b>,  
+                    is proposed to compress the geometry and attribute of any given point cloud. 
+                    Geometry compression is addressed in <a href="https://ieeexplore.ieee.org/document/10682571"> Part I</a>  of this paper, 
+                    while attribute compression is discussed in <a href="https://ieeexplore.ieee.org/document/10682566"> Part II</a>.
+                    <br><br>
+
+                    For <b>geoemtry </b> compression, we construct the multiscale sparse tensors 
+                    of each voxelized point cloud frame 
+                    and properly leverage lower-scale priors in the current 
+                    and (previously processed) temporal reference frames 
+                    to improve the conditional probability approximation 
+                    or content-aware predictive reconstruction of geometry occupancy in compression. 
+                    <br><br>
+                    For <b>attribute</b> compression, Since attribute components exhibit 
+                    very different intrinsic characteristics 
+                    from the geometry element, e.g., 8-bit RGB color versus 1-bit occupancy, 
+                    we process the attribute residual between lower-scale reconstruction 
+                    and current-scale data. 
+                    Similarly, we leverage spatially lower-scale priors in the current frame and 
+                    (previously processed) temporal reference frame to improve the probability 
+                    estimation of attribute intensity through conditional residual prediction 
+                    in lossless mode or enhance the attribute reconstruction through 
+                    progressive residual refinement in lossy mode for better performance.  
+                
+                    <br><br>
+                    The porposed Unicorn is a versatile, 
+                    learning-based solution capable of compressing 
+                    static and dynamic point clouds with diverse source characteristics 
+                    in both lossy and lossless modes.  Following the same evaluation criteria, 
+                    Unicorn significantly outperforms standard-compliant approaches 
+                    like MPEG G-PCC, V-PCC, and other learning-based solutions, yielding 
+                    state-of-the-art compression efficiency while presenting 
+                    affordable complexity for practical implementations. 
+                </div>
+
+            <!-- <div class="col-lg-12 text-center" style="font-size:20px">
+               <br>
+               <h2>  Video </h2>
+               <video width="960" height="580" controls="controls">
+                       <source src="img/v1.mp4" type="video/mp4" />
+                       Your browser does not support the video tag.
+                </video>
+            </div> -->
+
+            <div class="col-lg-12 text-center"  style="font-size:20px">
+                <h2> <b>Contributions</b> </h2>
+            </div>
+
+            <div class="col-lg-12 text-left" style="font-size:20px">
+                <b>Comprehensive coding metric:</b>&nbsp
+                Unicorn is the first, versatile, learning-based PCC solution.
+                <br> 1) It can compress the geometry and attribute information, either separately or jointly, of an input point cloud.
+                <br> 2) It flexibly supports the static and dynamic coding of point clouds in either lossless or lossy mode.
+                <br> 3) It demonstrates the leading performance for diverse types, including solid, dense, and sparse object point clouds, 
+                as well as scant LiDAR.
+            </div>
+
+            <div class="col-lg-12 text-left" style="font-size:20px">
+                <b>Better compression performance: </b>&nbsp
+                Unicorn provides significant performance gains to existing approaches.
+            </div>
+
+            <div class="col-lg-12 text-left" style="font-size:20px">
+                <b>Low computation complexity: </b>&nbsp
+                Unicorn is a low-complexity approach with comparable runtime measures to the G-PCC codec 
+                and variable-rate coding capability using a single neural model.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="method", class="results">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h2> Unicorn is a novel AI compressor that presents state-of-the-art efficiency.</h2>
-                   <video width="960" height="580" controls="controls">
-                       <source src="img/v1.mp4" type="video/mp4" />
-                       Your browser does not support the video tag.
-                    </video>
+                <h2> <b>Method</b> </h2>
+          
+                <img src="img/unicorn-data.png" style="width:80%;">
+                <h4> <b>Data processing in Unicorn. </b>  
+                    A specific frame P<sub>tk</sub> includes the geometry part O<sub>tk</sub> 
+                    and attribute intensity I<sub>tk</sub>; 
+                    Voxelized O<sub>tk</sub> is represented using sparse tensor 
+                    that only contains occupied voxels. 
+                </h4>
+                
+                <br><br>
+                <div class="text-center" style="font-size:18px">
+                    <h2>Geometry 
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Attribute</h2>
+                </div>
+                <!-- <div class="text-center">
+                    <h2>Attribute</h2>
+                </div> -->
+
+                <br>
+                <img src="img/MST_geo.png" style="width:40%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/MST_attr.png" style="width:40%;">
+                <h4> <b>Unicorn's Multiscale Sparse Representation. </b>  
+                    (left) geometry: 1 -  Occupied voxel, 0 - Unoccupied voxel; 
+                    (right) color attribute exemplified using luma or Y intensity. 
+                    OPU is the Occupancy Processing Unit, 
+                    and APU is the Attribute Processing Unit.
+                </h4>
+
+                <br><br>
+                <img src="img/OPU.png" style="width:40%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/APU.png" style="width:40%;">
+                <h4> <b>Cross-scale Processing Units. </b>
+                    (left) OPU; (right) APU.
+                    Spatially or spatiotemporally lower-scale priors 
+                    are used to support probability approximation in lossless mode 
+                    or predictive/progressive reconstruction in lossy mode 
+                    for respective static or dynamic coding.
+                </h4>
+
+                <br><br>
+                <img src="img/lossless_geometry.png" style="width:40%;">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/lossless_attribute.png" style="width:40%;">
+                <h4> <b>Losslesss Coder in Unicorn. </b>  
+                    (left) geometry; (right) attribute.
+                </h4>
+                <br>
+                <img src="img/lossy_geometry.png" style="width:40%;">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/lossy_attribute.png" style="width:40%;">
+                <h4> <b>Lossy Coder in Unicorn. </b>  
+                    (left) geometry; (right) attribute.
+                </h4>
+                <br>
+                <img src="img/dynamic_geometry.png" style="width:40%;">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/dynamic_attribute.png" style="width:40%;">
+                <h4> <b>Dynamic Coder in Unicorn. </b>  
+                    (left) geometry; (right) attribute.
+                </h4>
+
+                <br>
+                <img src="img/IntegratedFramework.png" style="width:55%;">
+                <h4> <b>Unified compression of geometry and attribute in Unicorn. </b>  
+                </h4>
+
             </div>
-<!--             <div class="col-lg-1">
-            </div>
-            <div class="col-lg-10">
-                <img src="img/geo.png" alt="dashboard" class="img-responsive pull-right">
-            </div>
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-12 text-center">
-                <br/>
-                <h4 style="color:rgb(53,53,53);"> Table: Attribute quantitative performance comparison with standardized G-PCC (Left: static coding; Right: dynamic coding).</h4>
-            </div>
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-5">
-                <img src="img/attri_static.png" alt="dashboard" class="img-responsive pull-right">
-            </div>
-            <div class="col-lg-5">
-                <img src="img/attri_dynamic.png" alt="dashboard" class="img-responsive pull-right">
-            </div>
-            <div class="col-lg-1">
-            </div> -->
-<!--             <div class="col-lg-6">
-                <img src="img/table7.png" alt="dashboard" class="img-responsive pull-right">
-            </div>
-            <div class="col-lg-6">
-                <img src="img/table8.png" alt="dashboard" class="img-responsive pull-right">
-            </div> -->
-            
         </div>
-<!--         <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bar-chart big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-            <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-bolt big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-        </div> -->
-<!--         <div class="row">
-            <div class="col-lg-5 col-lg-offset-1 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-clock-o big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-            <div class="col-lg-5 features-text">
-                <small>INSPINIA</small>
-                <h2>Perfectly designed </h2>
-                <i class="fa fa-users big-icon pull-right"></i>
-                <p>INSPINIA Admin Theme is a premium admin dashboard template with flat design concept. It is fully responsive admin dashboard template built with Bootstrap 3+ Framework, HTML5 and CSS3, Media query. It has a huge collection of reusable UI components and integrated with.</p>
-            </div>
-        </div> -->
     </div>
 
 </section>
-    
 
-<section id="introduction" class="container services">
+
+
+<section id="exp", class="results"></section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h2> <b>Experiments</b> </h2>
+
+                <br>
+                <img src="img/dataset.png" style="width:70%;">&nbsp&nbsp&nbsp&nbsp
+                <!-- <br> -->
+                <!-- <video width="250" height="250" class="center" controls="controls">
+                    <source src="img/longdress.mp4" type="video/mp4"/>
+                </video> -->
+                <!-- <video width="250" height="250" controls="controls">
+                    <source src="img/lidar.mp4" type="video/mp4"/>
+                </video> -->
+                <h4> <b>Point Cloud Examples. </b> 
+                    We conducted extensive experiments 
+                    on various point cloud datasets 
+                    to thoroughly understand the efficiency and generalization 
+                    of Unicorn. 
+                    These datasets include static and dynamic samples with diverse contents, 
+                    densities, resolutions, and other characteristics.
+                </h4>
+
+
+                <br>
+                <div class="text-center" style="font-size:16px"></div>
+                    <h2>Part I: Geometry </h2>
+                
+                <br>
+                <img src="img/geometry/SolidObjectvox108iVFBOwliiD1PSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/geometry/DenseObjectvox12FacadeHouseD1PSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/geometry/SparseObjectvox12AcroShivaStaueD1PSNR.png" style="width:30%;">&nbsp&nbsp
+                <h4> <b>R-D comparison for static geometry coding. </b> 
+                </h4>
+                
+                <br><br>
+                <img src="img/geometry/SolidObjectvox10OwliimseFPSNRp2point.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/geometry/ScantLiDARSceneq1mmFordD1PSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/geometry/ScantLiDARSceneq1mmKITTID1PSNR.png" style="width:30%;">&nbsp&nbsp
+                <h4> <b>R-D comparison for dynamic geometry coding. </b> 
+                </h4>
+
+                <br><br>
+                <img src="img/ablation_error_map.png" style="width:80%;">&nbsp&nbsp
+                <h4> <b>Error map visualization of reconstructed point clouds. </b> 
+                </h4>
+
+
+
+                <br><br><br>
+                <div class="text-center" style="font-size:16px"></div>
+                    <h2>Part II: Attribute </h2>
+                
+                <br>
+                <img src="img/attribute/8iVFBvox10YPSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/attribute/AverageCTCsamples1112bitYPSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/attribute/Fordq1mmPSNR.png" style="width:30%;">&nbsp&nbsp
+                <h4> <b>R-D comparison for static attribute coding. </b> 
+                </h4>
+
+                <br>
+                <img src="img/attribute/doubleLossy/longdress_PCQM.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/attribute/doubleLossy/loot_PCQM.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/attribute/doubleLossy/solider_PCQM.png" style="width:30%;">&nbsp&nbsp
+                <h4> <b>R-D comparison for lossy compression of geometry & attribute. </b> 
+                </h4>
+
+                <br>
+                <img src="img/attribute/dynamic/basketball_player_Y-PSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/attribute/dynamic/soldier_Y-PSNR.png" style="width:30%;">&nbsp&nbsp
+                <img src="img/attribute/dynamic/Ford_q1mm_PSNR.png" style="width:30%;">&nbsp&nbsp
+                <h4> <b>R-D comparison for dynamic attribute coding. </b> 
+                </h4>
+
+                <br>
+                <img src="img/attribute/vis_longdress_lossyA.png" style="width:80%;">&nbsp&nbsp
+                <h4> <b>Qualitative results of reconstructed point clouds 
+                    with lossy attribute coding. </b> 
+                </h4>
+                <br>
+                <img src="img/attribute/vis_longdress_lossyAlossyG.png" style="width:80%;">&nbsp&nbsp
+                <h4> <b>Qualitative visualization of reconstructed point clouds  
+                    with lossy compression mode of both geometry & attribute.  </b> 
+                </h4>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+<!-- <section id="introduction" class="container services">
     <div class="row">
         <div class="col-sm-4">
             <h2>Component</h2>
@@ -160,27 +413,13 @@
             <h4>Unicorn demonstrates the leading performance for diverse types, including solid, dense, and sparse object point clouds, as well as scant LiDAR.</h4>
         </div>
     </div>
-</section>
+</section> -->
 
-<section  class="container features">
+<!-- <section  class="container features">
     <div class="row">
         <div class="col-lg-12 text-center">
             <div class="navy-line"></div>
             <h1>Contributions of our Unicorn</h1>
-<!--             <div class="col-lg-1">
-            </div>
-            <div class="col-lg-4">
-               <img src="img/dataset.jpg" alt="dashboard" class="img-responsive pull-right">
-               <figcaption style="color:rgb(75,75,75);">We support different kinds of point clouds.</figcaption>
-            </div>
-            <div class="col-lg-1">
-            </div>
-            <div class="col-lg-5">
-               <img src="img/fractal_dimension.jpg" alt="dashboard" class="img-responsive pull-right">
-                <figcaption style="color:rgb(75,75,75);">We use fractal dimension to address different types.</figcaption>
-            </div>
-            <div class="col-lg-1">
-            </div> -->
         </div>
     </div>
     <div class="row features-block">
@@ -205,16 +444,12 @@
         </div>
         <div class="col-sm-1">
         </div>
-<!--         <div class="col-sm-4">
-            <img src="img/attribute_coder.png" alt="dashboard" class="img-responsive pull-right">
-            <figcaption style="color:rgb(75,75,75);">Unicorn’s Attribute Coder (top: lossless static coding; middle: lossy static coding; bottom: lossy dynamic coding).</figcaption>
-        </div> -->
     </div>
-</section>
+</section> -->
 
 
     
-<section id="codes" class="codes">
+<!-- <section id="codes" class="codes">
     <div class="container">
         <div class="row m-b-lg">
             <div class="col-lg-12 text-center">
@@ -227,7 +462,7 @@
         </div>
     </div>
 
-</section>
+</section> -->
     
 <section id="team" class="gray-section team">
     <div class="container">
@@ -284,6 +519,28 @@
         </div>
     </div>
 </section>
+
+
+<!-- <section id="ref" class="container services">
+    <div class="col-lg-12 text-center">
+        <h1>References</h1>
+    </div>
+
+    <p>J. Wang, R. Xue, J. Li, D. Ding, Y. Lin and Z. Ma, "
+        A Versatile Point Cloud Compressor 
+        Using Universal Multiscale Conditional Coding – Part I: Geometry," 
+        in IEEE Transactions on Pattern Analysis and Machine Intelligence, 
+        doi: 10.1109/TPAMI.2024.3462938.
+        </p>
+
+    <p>J. Wang, R. Xue, J. Li, D. Ding, Y. Lin and Z. Ma, "
+        A Versatile Point Cloud Compressor 
+        Using Universal Multiscale Conditional Coding – Part II: Attribute," 
+        in IEEE Transactions on Pattern Analysis and Machine Intelligence, 
+        doi: 10.1109/TPAMI.2024.3462945.
+        </p>
+</section> -->
+
     
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/pace.min.js"></script>
@@ -294,3 +551,33 @@
 <script src="js/inspinia.js"></script>
 </body>
 </html>
+
+
+<!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@ARTICLE{10682571,
+        author={Wang, Jianqiang and Xue, Ruixiang and Li, Jiaxin and Ding, Dandan and Lin, Yi and Ma, Zhan},
+        journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+        title={A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding – Part I: Geometry}, 
+        year={2024},
+        volume={},
+        number={},
+        pages={1-18},
+        doi={10.1109/TPAMI.2024.3462938}      
+  }</code></pre>
+      
+      <pre><code>@article{10682571,
+        author={Wang, Jianqiang and Xue, Ruixiang and Li, Jiaxin and Ding, Dandan and Lin, Yi and Ma, Zhan},
+        journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+        title={A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding – Part I: Geometry}, 
+        year={2024},
+        volume={},
+        number={},
+        pages={1-18},
+        doi={10.1109/TPAMI.2024.3462938} 
+      }</code></pre>
+    </div>
+  </section> -->
+
+
