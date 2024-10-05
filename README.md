@@ -1,6 +1,6 @@
 # Unicorn: A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding
 
-**Abstract — ** A universal multiscale conditional coding framework, Unicorn, is proposed to compress the geometry and attribute of any given point cloud. Geometry compression is addressed in [Part I] (https://ieeexplore.ieee.org/document/10682571) of this paper, while attribute compression is discussed in [Part II] (https://ieeexplore.ieee.org/document/10682566).
+**Abstract — ** A universal multiscale conditional coding framework, Unicorn, is proposed to compress the geometry and attribute of any given point cloud. Geometry compression is addressed in [Part I](https://ieeexplore.ieee.org/document/10682571) of this paper, while attribute compression is discussed in [Part II](https://ieeexplore.ieee.org/document/10682566).
 
 For geoemtry compression, we construct the multiscale sparse tensors of each voxelized point cloud frame and properly leverage lower-scale priors in the current and (previously processed) temporal reference frames to improve the conditional probability approximation or content-aware predictive reconstruction of geometry occupancy in compression.
 
