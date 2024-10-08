@@ -146,7 +146,7 @@ h1 {
   width: 100%;
 }
 .header-back.one {
-  background: url('../img/logo.png') 50% 0 no-repeat;
+  background: url('../img/logo.png') 10% 0 no-repeat;
 }
 .header-back.two {
   background: url('../img/header_two.jpg') 50% 0 no-repeat;
@@ -213,20 +213,20 @@ h1 {
 .carousel-inner {
   overflow: visible;
 }
-.carousel-caption {
+/* .carousel-caption {
   position: absolute;
   top: 100px;
   left: 0;
   bottom: auto;
   right: auto;
   text-align: left;
-}
+} */
 .carousel-caption {
   position: absolute;
-  top: 100px;
+  top: 60px;
   left: 0;
   bottom: auto;
-  right: auto;
+  right: 0;
   text-align: left;
 }
 .carousel-caption.blank {
@@ -242,7 +242,7 @@ h1 {
 }
 .carousel-caption h1 {
   font-weight: 700;
-  font-size: 38px;
+  font-size: 35px;
   text-transform: none;
   text-shadow: none;
   letter-spacing: -1.5px;
