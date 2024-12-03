@@ -1,8 +1,0 @@
-filedir,posQuantscale,num_points_raw,num_points,file_size,bpp,enc_time,enc_time_user,enc_time_wall,dec_time,dec_time_user,dec_time_wall,mseF      (p2point),"mseF,PSNR (p2point)",mseF      (p2plane),"mseF,PSNR (p2plane)"
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,1.0,645135,645135,374752,0.580889,3.178,2.61,3.153,2.265,0.6,2.22,0.0,inf,0.0,inf
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,0.9375,645135,569209,345992,0.536309,2.967,2.383,2.925,1.798,0.58,1.759,0.288317,70.37,0.0949707,75.1928
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,0.875,645135,498114,314928,0.488158,2.77,2.184,2.728,1.512,0.481,1.473,0.336728,69.6959,0.105116,74.752
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,0.75,645135,369050,248208,0.384738,2.45,1.869,2.409,1.133,0.358,1.104,0.499954,67.9794,0.146233,73.3183
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,0.5,645135,166872,115584,0.179163,1.655,1.092,1.618,0.549,0.161,0.508,1.4993,63.2098,0.431717,68.6167
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,0.25,645135,42269,37928,0.058791,1.217,0.636,1.182,0.184,0.046,0.147,4.49958,58.437,1.81569,62.3783
-./output/gpcc21_lossy_owlii/exercise_vox11_00000001.ply,0.125,645135,10598,12368,0.019171,1.037,0.468,0.998,0.093,0.006,0.051,16.4999,52.7939,8.28354,55.7866
