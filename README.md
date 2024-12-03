@@ -13,7 +13,7 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 
 ## News
 
-* 2024.11.28 Unicorn version 2 has responded to the Call for Proposals for AI-based Point Cloud Coding (m70061 & m70062).
+* 2024.11.28 Unicorn version 2 has responded to the Call for Proposals for AI-based Point Cloud Coding (m70061 & m70062 in https://dms.mpeg.expert/).
 * 2024.10.05 Initial release of part of the code and results. **(The entire source code will be released to the public after the approval from the funding agency.)**
 * 2024.09.12 The papers were accepted by TPAMI. (https://ieeexplore.ieee.org/document/10682571 and https://ieeexplore.ieee.org/document/10682566)
 
