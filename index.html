@@ -1,142 +1,240 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Unicorn: A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding">
+    <meta name="author" content="NJU Vision Lab">
 
     <title>Unicorn - Landing Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Animation CSS -->
     <link href="css/animate.min.css" rel="stylesheet">
-
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .version-content { display: none; }
+        .version-content.active { display: block; }
+
+        /* 一体化品牌+版本按钮 */
+        .unicorn-version-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f8f9fa;
+            color: #333;
+            padding: 6px 12px 6px 16px; /* 左右不对称，留出箭头空间 */
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-width: 110px;
+            gap: 8px;
+        }
+        .unicorn-version-btn:hover,
+        .unicorn-version-btn:focus {
+            background: #e9ecef;
+            color: #007bff;
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* 使用 chevron 替代 caret */
+        .unicorn-version-arrow {
+            font-size: 14px;
+            margin-left: 4px;
+            transition: transform 0.2s ease;
+        }
+        .unicorn-version-btn.dropdown-open .unicorn-version-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* 下拉菜单 */
+        .version-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            min-width: 120px;
+            margin-top: 4px;
+            display: none;
+            list-style: none;
+            padding: 6px 0;
+        }
+        .version-dropdown-menu.show {
+            display: block;
+        }
+        .version-dropdown-menu a {
+            display: block;
+            padding: 8px 16px;
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: background 0.15s;
+        }
+        .version-dropdown-menu a:hover {
+            background: #f1f1f1;
+            color: #007bff;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand-wrapper {
+                display: flex;
+                align-items: center;
+            }
+            .unicorn-version-btn {
+                font-size: 14px;
+                padding: 4px 10px 4px 12px;
+                min-width: 100px;
+            }
+            .unicorn-version-arrow {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body id="page-top">
 <div class="navbar-wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Unicorn</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a class="page-scroll" href="#page-top">Home</a></li>
-                        <li><a class="page-scroll" href="#intro">Introduction</a></li>
-                        <li><a class="page-scroll" href="#method">Method</a></li>
-                        <li><a class="page-scroll" href="#exp">Experiments</a></li>
-                        <!-- <li><a class="page-scroll" href="#introduction">Details</a></li>
-                        <li><a class="page-scroll" href="#codes">Codes</a></li> -->
-                        <li><a class="page-scroll" href="#team">Team</a></li>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- 一体化品牌+版本选择器 -->
+                <div class="navbar-brand-wrapper" style="position: relative;">
+                    <div class="unicorn-version-btn" id="unicornVersionBtn">
+                        Unicorn
+                        <i class="fa fa-chevron-down unicorn-version-arrow"></i>
+                    </div>
+                    <ul class="version-dropdown-menu" id="versionDropdownMenu">
+                        <li><a href="#" onclick="switchVersion('v1'); return false;">Unicorn v1</a></li>
+                        <li><a href="#" onclick="switchVersion('v3'); return false;">Unicorn v3</a></li>
                     </ul>
                 </div>
             </div>
-        </nav>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="page-scroll" href="#page-top">Home</a></li>
+                    <li><a class="page-scroll" href="#intro">Introduction</a></li>
+                    <li><a class="page-scroll" href="#method">Method</a></li>
+                    <li><a class="page-scroll" href="#exp">Experiments</a></li>
+                    <li><a class="page-scroll" href="#team">Team</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
 
-<div id="inSlider" class="carousel slide carousel-fade" data-ride="carousel">
-<!--     <ol class="carousel-indicators">
-        <li data-target="#inSlider" data-slide-to="0" class="active"></li>
-    </ol> -->
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="container">
-                <div class="carousel-caption">
+<!-- ========== Carousel and other sections remain unchanged ========== -->
 
-                    <div class="col-lg-12 text-center">
-                        <img style="width:7%;" src="./img/unicorn-logo1.png">&nbsp;&nbsp
-                        <img style="width:18%;" src="./img/unicorn-logo2.png">
+<!-- ============ Version-Controlled Carousel ============ -->
+<div id="hero-carousel-container">
+    <!-- v1 Hero -->
+    <div class="version-content active" data-version="v1">
+        <div id="inSlider" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="col-lg-12 text-center">
+                                <img style="width:7%;" src="./img/unicorn-logo1.png">&nbsp;&nbsp;
+                                <img style="width:18%;" src="./img/unicorn-logo2.png">
 
-                        <h1>A Versatile Point Cloud Compressor<br/> 
-                            Using Universal Multiscale Conditional Coding:<br/>
-                            Geometry & Attribute
-                        </h1>
+                                <h1>A Versatile Point Cloud Compressor<br/> 
+                                    Using Universal Multiscale Conditional Coding:<br/>
+                                    Geometry & Attribute
+                                </h1>
 
-                        <!-- <h1 style="font-size:30px"> TPAMI 2024</h1> -->
+                                <br>
+                                <div class="is-size-5 publication-authors">
+                                    <span style="font-size:24px"><sup>1</sup> Nanjing University <a href="https://vision.nju.edu.cn/">Vision Lab</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span style="font-size:24px"><sup>2</sup> Hangzhou Normal University</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span style="font-size:24px"><sup>3</sup> Fudan University</span>
+                                </div>
 
-                        <!-- <div class="is-size-5 publication-authors">
-                            <span style="font-size:16px">
-                              Jianqiang Wang<sup># 1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
-                            <span  style="font-size:16px">
-                              Ruixiang Xue<sup># 1</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span  style="font-size:16px">
-                              Jiaxin Li<sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
-                            <span  style="font-size:16px">
-                              Dandan Ding<sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </span>
-                            <span  style="font-size:16px">
-                                Yi Lin<sup>* 3</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              </span>
-                              <span  style="font-size:16px">
-                                Zhan Ma<sup>* 1</sup>
-                              </span>
-                          </div>
-                        
-                          <div style="font-size:16px">
-                            <sup># </sup> Denotes Equal Contribution &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <sup>* </sup> Denotes Corresponding Authors
-                          </div> -->
+                                <br>
+                                <a href="https://ieeexplore.ieee.org/document/10682571">
+                                    <span style="font-size:20px">Paper I</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://ieeexplore.ieee.org/document/10682566">
+                                    <span style="font-size:20px">Paper II</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://github.com/NJUVISION/Unicorn/Unicorn-family/Unicorn-v1">
+                                    <span style="font-size:20px">Code</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://github.com/NJUVISION/Unicorn/Unicorn-family/Unicorn-v1/results.zip">
+                                    <span style="font-size:20px">Results</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://github.com/NJUVISION/Unicorn/Unicorn-family/Unicorn-v2">
+                                    <span style="font-size:20px">Proposals (Unicorn v2)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                        <br>
-                        <div class="is-size-5 publication-authors">
-                            <span style="font-size:24px" ><sup>1</sup> Nanjing University <a href="https://vision.nju.edu.cn/"> Vision Lab </a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span style="font-size:24px"><sup>2</sup>Hangzhou Normal University</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span style="font-size:24px"><sup>3</sup>Fudan University</span>
-                          </div>
+    <!-- v3 Hero -->
+    <div class="version-content" data-version="v3">
+        <div id="inSlider-v3" class="carousel slid e carousel-fade" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <div class="col-lg-12 text-center">
+                                <!-- 可替换为 v3 专属 Logo（如有） -->
+                                <img style="width:7%;" src="./img/unicorn-logo1.png">&nbsp;&nbsp;
+                                <img style="width:24%;" src="./img/unicorn v3 logo.png">
 
-                          <!-- <div style="font-size:24px">
-                            <sup>1</sup> <a href="https://vision.nju.edu.cn/main.htm"><img style="width:5%;" src="./img/nju.jpg"> </a>
-                            <sup>2</sup> <a href="https://vision.nju.edu.cn/main.htm"><img style="width:5%;" src="./img/hznu.jpg"> </a>
-                            <sup>3</sup> <a href="https://vision.nju.edu.cn/main.htm"><img style="width:5%;" src="./img/fudan.jpeg"> </a>
-                          </div> -->
+                                <h1>
+                                    Improving Occupancy Prediction <br/> for Multiscale
+                                    Point Cloud Geometry Compression<br/>
+                                </h1>
 
-                          <br>
-                            <a href="https://ieeexplore.ieee.org/document/10682571">
-                              <span style="font-size:20px" >Paper I </span>
-                            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  
-                            <a href="https://ieeexplore.ieee.org/document/10682566">
-                                <span style="font-size:20px" >Paper II </span>
-                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br>
+                                <div class="is-size-5 publication-authors">
+                                    <span style="font-size:24px">
+                                        Zehong Li, Jiahao Zhu, Dandan Ding, and Zhan Ma
+                                    </span>
+                                </div>
 
-                              <a href="https://github.com/NJUVISION/Unicorn">
-                                <span style="font-size:20px" >Code </span>
-                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <br>
 
-                              <!-- <a href="https://github.com/NJUVISION/Unicorn">
-                                <span style="font-size:20px" >Datasets </span>
-                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-
-                              <a href="./results.zip">
-                                <span style="font-size:20px" >Results </span>
-                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                <a href="./proposal.zip">
-                                <span style="font-size:20px" >Proposals </span>
-                              </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <a href="#">
+                                    <span style="font-size:20px">Paper</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- <a href="https://github.com/NJUVISION/Unicorn"> -->
+                                    <span style="font-size:20px">Code</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <a href="https://github.com/NJUVISION/Unicorn/Unicorn-family/Unicorn-v3/results.zip">
+                                    <span style="font-size:20px">Results</span>
+                                </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,43 +242,34 @@
     </div>
 </div>
 
-<section id="1", class="results">
+<section id="news" class="results">
     <div class="container">
         <div class="row">
             <div class="navy-line"></div>
-                <div class="col-lg-12 text-center">
-                    <h2> <b>News</b> </h2>
-                </div>
+            <div class="col-lg-12 text-center">
+                <h2><b>News</b></h2>
+            </div>
 
-                <div class="col-lg-12 text-left" style="font-size:20px">
-                    <strong> 2024.12.06 Open source Unicorn Pre (<a href="https://github.com/NJUVISION/SparsePCGC">SparsePCGC</a>)!
-                    <br><br>
-                    <strong> 2024.10.28 Unicorn version 2 has responded to the Call for Proposals for AI-based Point
-                        Cloud Coding (m70061 & m70062 in <a href="https://dms.mpeg.expert/">MPEG</a>).</strong>
-                    <br><br>
-                    <strong> 2024.10.05 Initial release of part of the code and results. (The entire source code will be
-                    released to the public after the approval from the funding agency.)</strong>
-                    <br><br>
-                    <strong> 2024.09.12 Unicorn version 1 was accepted by TPAMI.
-                        (<a href="https://ieeexplore.ieee.org/document/10682571"> Part I</a> and
-                    <a href="https://ieeexplore.ieee.org/document/10682566"> Part II </a>)</strong>
-
-                </div>
-
+            <div class="col-lg-12 text-left" style="font-size:20px">
+                <strong>2025.12.05</strong> Open source Unicorn <a href="https://github.com/NJUVISION/Unicorn">version 1</a> and <a href="https://github.com/NJUVISION/Unicorn">version 2</a>! <br><br>
+                <strong>2025.12.04</strong> Unicorn version 3 was accepted by TCSVT. <br><br>
+                <strong>2024.12.06</strong> Open source Unicorn Pre (<a href="https://github.com/NJUVISION/SparsePCGC">SparsePCGC</a>)!<br><br>
+                <strong>2024.10.28</strong> Unicorn version 2 has responded to the Call for Proposals for AI-based Point Cloud Coding (m70061 & m70062 in <a href="https://dms.mpeg.expert/">MPEG</a>).<br><br>
+                <strong>2024.10.05</strong> Initial release of part of the code and results. (The entire source code will be released to the public after the approval from the funding agency.)<br><br>
+                <strong>2024.09.12</strong> Unicorn version 1 was accepted by TPAMI. (<a href="https://ieeexplore.ieee.org/document/10682571">Part I</a> and <a href="https://ieeexplore.ieee.org/document/10682566">Part II</a>)<br><br>       
+            </div>
         </div>
     </div>
 </section>
 
-
-<section id="intro", class="results">
-    <div class="container">
+<!-- Introduction -->
+<section id="intro" class="results">
+    <div class="container version-content active" data-version="v1">
         <div class="row">
             <div class="navy-line"></div>
-                <div class="col-lg-12 text-center">
-                    <h2> <b>Abstract</b> </h2>
-                </div>
+            <div class="col-lg-12 text-center"><h2><b>Abstract</b></h2></div>
+            <div class="col-lg-12 text-left" style="font-size:20px">
                 
-                <div class="col-lg-12 text-left" style="font-size:20px">
                     A universal multiscale conditional coding framework,  <b>Unicorn</b>,  
                     is proposed to compress the geometry and attribute of any given point cloud. 
                     Geometry compression is addressed in <a href="https://ieeexplore.ieee.org/document/10682571"> Part I</a>  of this paper, 
@@ -215,20 +304,7 @@
                     state-of-the-art compression efficiency while presenting 
                     affordable complexity for practical implementations. 
                 </div>
-
-            <!-- <div class="col-lg-12 text-center" style="font-size:20px">
-               <br>
-               <h2>  Video </h2>
-               <video width="960" height="580" controls="controls">
-                       <source src="img/v1.mp4" type="video/mp4" />
-                       Your browser does not support the video tag.
-                </video>
-            </div> -->
-
-            <div class="col-lg-12 text-center"  style="font-size:20px">
-                <h2> <b>Contributions</b> </h2>
-            </div>
-
+            <div class="col-lg-12 text-center" style="font-size:20px"><h2><b>Contributions</b></h2></div>
             <div class="col-lg-12 text-left" style="font-size:20px">
                 <b>Comprehensive coding metric:</b>&nbsp
                 Unicorn is the first, versatile, learning-based PCC solution.
@@ -250,15 +326,65 @@
             </div>
         </div>
     </div>
+
+    <div class="container version-content" data-version="v3">
+        <div class="row">
+            <div class="navy-line"></div>
+            <div class="col-lg-12 text-center"><h2><b>Abstract</b></h2></div>
+            <div class="col-lg-12 text-left" style="font-size:20px">
+                Multiscale sparse representation offers significant advantages in point cloud geometry compression, delivering state-of-the-art performance compared to both standardized solutions and other learned approaches. A crucial component of this framework is the cross-scale occupancy prediction, which employs the lower-scale reference representation either from the current frame alone or from both the current and temporal reference frames to establish conditional priors for either static or dynamic coding. However, existing works mainly use local computations, e.g., sparse convolutions and kNN attention, to exploit correlations in such a representation; these methods usually fail to adequately capture global coherence. In addition, the fixed configuration of lossless-lossy scales cannot adapt to temporal dynamics, which limits the reconstruction quality of temporal references in dynamic coding. These limitations constrain the generation of more effective priors used for conditional coding. To address these issues, we propose two new techniques. The first is KPA (Key Point-driven Attention), which integrates both local and global characteristics. The second is AdaScale (Adaptive Lossy/Lossless Scale), which decides whether the transitional scale should be in lossless or lossy mode based on temporal displacement, thereby enhancing the reconstruction quality of the temporal reference. Extensive experiments demonstrate that our approach significantly outperforms state-of-the-art methods, including rules-based standard codecs like G-PCC and V-PCC, as well as learning-based approaches like Unicorn and TMAP, across both static/dynamic and lossy/lossless coding scenarios.
+            
+                <br><br>
+            
+                <strong>KPA (Key Point-driven Attention):</strong> A novel attention mechanism that identifies salient key points to bridge local geometric details and global structural context. By focusing computation on these representative points, KPA enables long-range dependency modeling while maintaining efficiency—overcoming the limited receptive field of conventional sparse convolutions.
+            
+                <br><br>
+            
+                <strong>AdaScale (Adaptive Lossy/Lossless Scale):</strong> An adaptive strategy that dynamically selects lossless or lossy coding for transitional scales based on inter-frame motion. When significant temporal displacement is detected, the scale is encoded losslessly to produce a high-quality reference frame; otherwise, it uses lossy compression for efficiency. This improves both rate-distortion performance and temporal prediction accuracy.
+            </div>
+            <div class="col-lg-12 text-center" style="font-size:20px"><h2><b>Contributions</b></h2></div>
+            <div class="col-lg-12 text-left" style="font-size: 20px;">
+                <ul>
+                  <li>
+                    By integrating KPA and AdaScale into the multiscale sparse representation framework, this work demonstrates significant improvements over rule-based solutions like G-PCC and V-PCC, as well as learned approaches like Unicorn and TMAP1.
+                    <ul>
+                      <li>
+                        In static coding, it surpasses TMAP by <strong>9.1% to 22.3%</strong> in lossless mode and by <strong>12.7% to 40.7%</strong> in lossy mode.  
+                        For dynamic coding, it outperforms TMAP by <strong>8.8%</strong> in lossless mode and <strong>37.6%</strong> in lossy mode.  
+                        Note that TMAP requires significantly longer processing time, likely due to redundant modules such as point-wise enhancement.
+                      </li>
+                      <li>
+                        Compared to V-PCC, our method achieves BD-BR gains of about <strong>56%</strong> in static lossy mode and <strong>91%</strong> in dynamic lossy mode, while maintaining comparable decoding latency.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    The impressive compression gains of this work are attributed to the use of KPA and AdaScale.  
+                    KPA combines both local and global characteristics of the input reference representation, while AdaScale improves the quality of the reference representation itself.  
+                    Together, these mechanisms strive to generate better conditional priors for occupancy prediction.
+                    <ul>
+                      <li>
+                        KPA samples a limited number of key points to perform cross-attention, maintaining global structural coherence while significantly reducing complexity.
+                      </li>
+                      <li>
+                        AdaScale loosens the fixed configuration of lossless-lossy scales, opening new opportunities to optimize the reference frame quality for better performance.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+        </div>
+    </div>
 </section>
 
-<section id="method", class="results">
-    <div class="container">
+<!-- Method -->
+<section id="method" class="results">
+    <!-- v1: original Unicorn framework -->
+    <div class="container version-content active" data-version="v1">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h2> <b>Method</b> </h2>
-          
+                <h2><b>Method</b></h2>
                 <img src="img/unicorn-data.png" style="width:80%;">
                 <h4> <b>Data processing in Unicorn. </b>  
                     A specific frame P<sub>tk</sub> includes the geometry part O<sub>tk</sub> 
@@ -269,28 +395,21 @@
                 
                 <br><br>
                 <div class="text-center" style="font-size:18px">
-                    <h2>Geometry 
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Attribute</h2>
+                    <h2>Geometry &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Attribute</h2>
                 </div>
-                <!-- <div class="text-center">
-                    <h2>Attribute</h2>
-                </div> -->
-
+    
                 <br>
-                <img src="img/MST_geo.png" style="width:40%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/MST_geo.png" style="width:40%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <img src="img/MST_attr.png" style="width:40%;">
                 <h4> <b>Unicorn's Multiscale Sparse Representation. </b>  
-                    (left) geometry: 1 -  Occupied voxel, 0 - Unoccupied voxel; 
+                    (left) geometry: 1 - Occupied voxel, 0 - Unoccupied voxel; 
                     (right) color attribute exemplified using luma or Y intensity. 
                     OPU is the Occupancy Processing Unit, 
                     and APU is the Attribute Processing Unit.
                 </h4>
-
+    
                 <br><br>
-                <img src="img/OPU.png" style="width:40%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/OPU.png" style="width:40%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <img src="img/APU.png" style="width:40%;">
                 <h4> <b>Cross-scale Processing Units. </b>
                     (left) OPU; (right) APU.
@@ -299,58 +418,125 @@
                     or predictive/progressive reconstruction in lossy mode 
                     for respective static or dynamic coding.
                 </h4>
-
+    
                 <br><br>
-                <img src="img/lossless_geometry.png" style="width:40%;">
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/lossless_geometry.png" style="width:40%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <img src="img/lossless_attribute.png" style="width:40%;">
-                <h4> <b>Losslesss Coder in Unicorn. </b>  
+                <h4> <b>Lossless Coder in Unicorn. </b>  
                     (left) geometry; (right) attribute.
                 </h4>
                 <br>
-                <img src="img/lossy_geometry.png" style="width:40%;">
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/lossy_geometry.png" style="width:40%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <img src="img/lossy_attribute.png" style="width:40%;">
                 <h4> <b>Lossy Coder in Unicorn. </b>  
                     (left) geometry; (right) attribute.
                 </h4>
                 <br>
-                <img src="img/dynamic_geometry.png" style="width:40%;">
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <img src="img/dynamic_geometry.png" style="width:40%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <img src="img/dynamic_attribute.png" style="width:40%;">
                 <h4> <b>Dynamic Coder in Unicorn. </b>  
                     (left) geometry; (right) attribute.
                 </h4>
-
+    
                 <br>
                 <img src="img/IntegratedFramework.png" style="width:55%;">
                 <h4> <b>Unified compression of geometry and attribute in Unicorn. </b>  
                 </h4>
-
             </div>
         </div>
     </div>
 
-</section>
 
 
-
-<section id="exp", class="results"></section>
-    <div class="container">
+    <!-- v3 -->
+    <div class="container version-content" data-version="v3">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="navy-line"></div>
-                <h2> <b>Experiments</b> </h2>
+                <h2><b>Method</b></h2>
+                <div style="height: 30px;"></div>
+                <img src="img/framework3.png" style="width:80%;">
 
-                <br>
-                <img src="img/dataset.png" style="width:70%;">&nbsp&nbsp&nbsp&nbsp
-                <!-- <br> -->
-                <!-- <video width="250" height="250" class="center" controls="controls">
-                    <source src="img/longdress.mp4" type="video/mp4"/>
-                </video> -->
-                <!-- <video width="250" height="250" controls="controls">
-                    <source src="img/lidar.mp4" type="video/mp4"/>
-                </video> -->
+                <p style="color: #555; margin-top: 10px; line-height: 1.6; font-size: 16px;">
+              
+                  <strong>Multiscale Sparse Representation Framework:</strong> Used for neural point cloud compression. The process starts with the full-resolution frame and progressively downscales it to create multiple representations. Compression begins with a thumbnail and uses lower-scale references for subsequent scales.
+              
+                </p>
+
+                <div style="height: 40px;"></div>
+                
+                <img src="img/method31.png" style="width:40%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         
+                <img src="img/method32.png" style="width:40%;">
+                <div class="container text-center">
+                    <h4>
+                        <strong>Left: </strong>Uniform key point sampling from a 3D tensor serialized via Hilbert curve (green: valid points, red: sampled key points).  
+                    </h4>
+                    <h4>
+                        <strong>Right:</strong> Local feature extraction using multi-level sparse convolutions at varying strides (2D illustration).
+                    </h4>
+                        
+                    
+                        
+               </div>  
+                <div style="height: 40px;"></div>
+                <div class="container">
+                    <div class="row">
+                        <!-- 左边的第一张图片 -->
+                        <div class="container">
+                            <div class="row">
+                                <!-- 左边的第一张图片 -->
+                                <div class="col-lg-6 text-center">
+                                    <img src="img/workflow.png" style="width:80%; ">
+                                </div>
+                                
+                                <!-- 右边的第二、三张图片 -->
+                                <div class="col-lg-6">
+                                    <div class="row h-100">
+                                        <!-- 第二张图片：右上角 -->
+                                        <div class="col-lg-12 mb-5 text-center" style="flex: 1; margin-bottom: 10px;">
+                                            <img src="img/KPA.png" style="width:100%;">
+                                        </div>
+                                        
+                                        <!-- 第三张图片：右下角 -->
+                                        <div class="col-lg-12 text-center" style="flex: 1;">
+                                            <img src="img/Cross-KPA.png" style="width:100%; ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <!-- 所有图片下方的文字说明 -->
+                            <div class="row mt-5"> <!-- 添加顶部外边距来分隔图片和说明 -->
+                                <div class="col text-center">
+                                    <h4> <b>Modular Component Details. </b>  
+                                        (a) Connections among Occupancy Prediction, Extractor, and Predictor. (b) Structure of KPA used in Occupancy Prediction and Extractor. (c) Structure of Cross-Frame KPA used in Predictor.
+                                    </h4>
+                                </div>
+                            </div>
+                            <div style="height: 40px;"></div>
+                            <img src="img/AdaScale.png" style="width:80%;">
+                            <h4><strong>AdaScale:</strong> Adapts the (m+1)-th scale of a point cloud frame to <em>lossless</em> mode if significant motion is detected—producing a high-quality reference frame (HF). Otherwise, it uses <em>lossy</em> mode. Lossless scales reference the same scale in the previous frame; lossy scales reference the most recent HF.</h4>
+
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experiments -->
+<section id="exp" class="results">
+    <!-- v1 -->
+    <div class="container version-content active" data-version="v1">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h2><b>Experiments</b></h2>
+                <img src="img/dataset.png" style="width:70%;">
                 <h4> <b>Point Cloud Examples. </b> 
                     We conducted extensive experiments 
                     on various point cloud datasets 
@@ -359,220 +545,201 @@
                     These datasets include static and dynamic samples with diverse contents, 
                     densities, resolutions, and other characteristics.
                 </h4>
-
-
+    
                 <br>
-                <div class="text-center" style="font-size:16px"></div>
-                    <h2>Part I: Geometry </h2>
+                <h2>Part I: Geometry </h2>
                 
                 <br>
-                <img src="img/geometry/SolidObjectvox108iVFBOwliiD1PSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/geometry/DenseObjectvox12FacadeHouseD1PSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/geometry/SparseObjectvox12AcroShivaStaueD1PSNR.png" style="width:30%;">&nbsp&nbsp
-                <h4> <b>R-D comparison for static geometry coding. </b> 
-                </h4>
+                <img src="img/geometry/SolidObjectvox108iVFBOwliiD1PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/geometry/DenseObjectvox12FacadeHouseD1PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/geometry/SparseObjectvox12AcroShivaStaueD1PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <h4> <b>R-D comparison for static geometry coding. </b> </h4>
                 
                 <br><br>
-                <img src="img/geometry/SolidObjectvox10OwliimseFPSNRp2point.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/geometry/ScantLiDARSceneq1mmFordD1PSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/geometry/ScantLiDARSceneq1mmKITTID1PSNR.png" style="width:30%;">&nbsp&nbsp
-                <h4> <b>R-D comparison for dynamic geometry coding. </b> 
-                </h4>
-
+                <img src="img/geometry/SolidObjectvox10OwliimseFPSNRp2point.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/geometry/ScantLiDARSceneq1mmFordD1PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/geometry/ScantLiDARSceneq1mmKITTID1PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <h4> <b>R-D comparison for dynamic geometry coding. </b> </h4>
+    
                 <br><br>
-                <img src="img/ablation_error_map.png" style="width:80%;">&nbsp&nbsp
-                <h4> <b>Error map visualization of reconstructed point clouds. </b> 
-                </h4>
-
-
-
+                <img src="img/ablation_error_map.png" style="width:80%;">
+                <h4> <b>Error map visualization of reconstructed point clouds. </b> </h4>
+    
                 <br><br><br>
-                <div class="text-center" style="font-size:16px"></div>
-                    <h2>Part II: Attribute </h2>
+                <h2>Part II: Attribute </h2>
                 
                 <br>
-                <img src="img/attribute/8iVFBvox10YPSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/attribute/AverageCTCsamples1112bitYPSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/attribute/Fordq1mmPSNR.png" style="width:30%;">&nbsp&nbsp
-                <h4> <b>R-D comparison for static attribute coding. </b> 
-                </h4>
-
+                <img src="img/attribute/8iVFBvox10YPSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/attribute/AverageCTCsamples1112bitYPSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/attribute/Fordq1mmPSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <h4> <b>R-D comparison for static attribute coding. </b> </h4>
+    
                 <br>
-                <img src="img/attribute/doubleLossy/longdress_PCQM.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/attribute/doubleLossy/loot_PCQM.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/attribute/doubleLossy/solider_PCQM.png" style="width:30%;">&nbsp&nbsp
-                <h4> <b>R-D comparison for lossy compression of geometry & attribute. </b> 
-                </h4>
-
+                <img src="img/attribute/doubleLossy/longdress_PCQM.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/attribute/doubleLossy/loot_PCQM.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/attribute/doubleLossy/solider_PCQM.png" style="width:30%;">&nbsp;&nbsp;
+                <h4> <b>R-D comparison for lossy compression of geometry & attribute. </b> </h4>
+    
                 <br>
-                <img src="img/attribute/dynamic/basketball_player_Y-PSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/attribute/dynamic/soldier_Y-PSNR.png" style="width:30%;">&nbsp&nbsp
-                <img src="img/attribute/dynamic/Ford_q1mm_PSNR.png" style="width:30%;">&nbsp&nbsp
-                <h4> <b>R-D comparison for dynamic attribute coding. </b> 
-                </h4>
-
+                <img src="img/attribute/dynamic/basketball_player_Y-PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/attribute/dynamic/soldier_Y-PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <img src="img/attribute/dynamic/Ford_q1mm_PSNR.png" style="width:30%;">&nbsp;&nbsp;
+                <h4> <b>R-D comparison for dynamic attribute coding. </b> </h4>
+    
                 <br>
-                <img src="img/attribute/vis_longdress_lossyA.png" style="width:80%;">&nbsp&nbsp
+                <img src="img/attribute/vis_longdress_lossyA.png" style="width:80%;">
                 <h4> <b>Qualitative results of reconstructed point clouds 
-                    with lossy attribute coding. </b> 
-                </h4>
+                    with lossy attribute coding. </b> </h4>
                 <br>
-                <img src="img/attribute/vis_longdress_lossyAlossyG.png" style="width:80%;">&nbsp&nbsp
+                <img src="img/attribute/vis_longdress_lossyAlossyG.png" style="width:80%;">
                 <h4> <b>Qualitative visualization of reconstructed point clouds  
-                    with lossy compression mode of both geometry & attribute.  </b> 
-                </h4>
+                    with lossy compression mode of both geometry & attribute.  </b> </h4>
             </div>
         </div>
     </div>
 
-</section>
 
 
-
-<!-- <section id="introduction" class="container services">
-    <div class="row">
-        <div class="col-sm-4">
-            <h2>Component</h2>
-            <h4>Unicorn can compress the geometry and attribute information, either separately or jointly, of an input point cloud.</h4>
-        </div>
-        <div class="col-sm-4">
-            <h2>Tool</h2>
-            <h4>Unicorn flexibly supports the static and dynamic coding of point clouds in either lossless or lossy mode.</h4>
-        </div>
-        <div class="col-sm-4">
-            <h2>Source</h2>
-            <h4>Unicorn demonstrates the leading performance for diverse types, including solid, dense, and sparse object point clouds, as well as scant LiDAR.</h4>
-        </div>
-    </div>
-</section> -->
-
-<!-- <section  class="container features">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <div class="navy-line"></div>
-            <h1>Contributions of our Unicorn</h1>
-        </div>
-    </div>
-    <div class="row features-block">
-        <div class="col-sm-1">
-        </div>
-        <div class="col-sm-5">
-            <br/>
-            <br/>
-            <h2 style="color:rgb(53,53,53);"><b>Comprehensive coding metric</b></h2>
-            <h4 style="color:rgb(88,88,88);">Unicorn is the first, versatile, learning-based solution.</h4>
-            <br/>
-            <br/>
-            <h2 style="color:rgb(53,53,53);"><b>Better compression performance </b></h2>
-            <h4 style="color:rgb(88,88,88);">Unicorn provides significant performance gains to existing approaches.</h4>
-            <br/>
-            <br/>
-            <h2 style="color:rgb(53,53,53);"><b>Low computation complexity</b></h2>
-            <h4 style="color:rgb(88,88,88);">Unicorn is a low-complexity approach with comparable runtime measures to the G-PCC codec and variable-rate coding capability using a single neural model. </h4>
-        </div>
-        <div class="col-sm-5">
-            <img src="img/framework.png" alt="dashboard" class="img-responsive pull-right">
-        </div>
-        <div class="col-sm-1">
-        </div>
-    </div>
-</section> -->
-
-
-    
-<!-- <section id="codes" class="codes">
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Codes and papers</h1>
-                <h4>These are links to our papers and codes, please cite us when using them.</h4>
-                
-            </div>
-        </div>
-        </div>
-    </div>
-
-</section> -->
-    
-<section id="team" class="gray-section team">
-    <div class="container">
-        <div class="row m-b-lg">
-            <div class="col-lg-12 text-center">
-                <div class="navy-line"></div>
-                <h1>Our Team</h1>
-                <p>Team members contributed to Unicorn.</p>
-            </div>
-        </div>
+    <!-- v3 -->
+    <div class="container version-content" data-version="v3">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <h4><span class="navy">Ma</span> Zhan</h4>
-                    <p>Professor at Nanjing University. </p>
-                    <p>Email: mazhan@nju.edu.cn </p>
+            <div class="col-lg-12 text-center">
+                <div class="navy-line"></div>
+                <h2><b>Experiments</b></h2>
+    
+                <!-- 结果图片 -->
+                <img src="img/result3.png" style="width:60%; margin-top: 20px;">
+                
+                <!-- 压缩增益描述 -->
+                <h4>
+                    <strong>Compression Gains:</strong> The proposed method demonstrates a significant advantage over both rules-based approaches, such as V-PCC, G-PCC, and GeS-TM, as well as learned methods like TMAP and Unicorn, in both lossless and lossy, as well as static and dynamic geometry coding modes. We evaluate the lossless performance using the 8iVFB and Owlii datasets. TMAP, a recent AI-PCC model released by MPEG, serves as the anchor.
+                </h4>
+    
+                <!-- 编码时间图片 -->
+                <img src="img/codingtime3.png" style="width:100%; margin-top: 20px;">
+                
+                <!-- 运行时间比较描述 -->
+                <h4>
+                    <strong>Runtime Comparison:</strong> Average encoding and decoding time (seconds/frame) of different methods. Ours* is a lightweight version of our model.
+                </h4>
+    
+
+            </div>
+        </div>
+    </div>
+</section>
+</section>
+<!-- Team -->
+<!-- Team -->
+<section id="team" class="gray-section team">
+    <!-- v1 Team -->
+    <div class="version-content active" data-version="v1">
+        <div class="container">
+            <div class="row m-b-lg">
+                <div class="col-lg-12 text-center">
+                    <div class="navy-line"></div>
+                    <h1>Our Team</h1>
+                    <p>Team members contributed to Unicorn.</p>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <h4><span class="navy">Ding</span> Dandan</h4>
-                    <p>Associate Professor at Hangzhou Normal University.</p>
-                    <p>Email: DandanDing@hznu.edu.cn </p>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <h4><span class="navy">Ma</span> Zhan</h4>
+                        <p>Professor at Nanjing University.</p>
+                        <p>Email: mazhan@nju.edu.cn</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <h4><span class="navy">Ding</span> Dandan</h4>
+                        <p>Associate Professor at Hangzhou Normal University.</p>
+                        <p>Email: DandanDing@hznu.edu.cn</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <h4><span class="navy">Chen</span> Tong</h4>
+                        <p>Associate Researcher at Nanjing University.</p>
+                        <p>Email: chentong@nju.edu.cn</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <h4><span class="navy">Wang</span> Jianqiang</h4>
+                        <p>Ph.D. Candidate at Nanjing University.</p>
+                        <p>Email: wangjq@smail.nju.edu.cn</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <h4><span class="navy">Xue</span> Ruixiang</h4>
+                        <p>Ph.D. Candidate at Nanjing University.</p>
+                        <p>Email: xrxee@smail.nju.edu.cn</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <h4><span class="navy">Li</span> Jiaxin</h4>
+                        <p>Ph.D. Candidate at Nanjing University.</p>
+                        <p>Email: lijiaxin@smail.nju.edu.cn</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <h4><span class="navy">Chen</span> Tong</h4>
-                    <p>Associate Researcher at Nanjing University.</p>
-                    <p>Email: chentong@nju.edu.cn </p>
+        </div>
+    </div>
+
+    <!-- v3 Team -->
+    <div class="version-content" data-version="v3">
+        <div class="container">
+            <div class="row m-b-lg">
+                <div class="col-lg-12 text-center">
+                    <div class="navy-line"></div>
+                    <h1>Our Team</h1>
+                    <!-- 可选：加一句说明 -->
+                     <p>Team members contributed to Unicorn v3.</p>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <h4><span class="navy">Wang</span> Jianqiang</h4>
-                    <p>Ph.D. Candidate at Nanjing University.</p>
-                    <p>Email: wangjq@smail.nju.edu.cn </p>
+    
+            <!-- 第一行：导师 / 教师 -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="team-member">
+                        <h4><span class="navy">Ma</span> Zhan</h4>
+                        <p>Professor at Nanjing University.</p>
+                        <p>Email: mazhan@nju.edu.cn</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="team-member">
+                        <h4><span class="navy">Ding</span> Dandan</h4>
+                        <p>Associate Professor at Hangzhou Normal University.</p>
+                        <p>Email: DandanDing@hznu.edu.cn</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <h4><span class="navy">Xue</span> Ruixiang</h4>
-                    <p>Ph.D. Candidate at Nanjing University.</p>
-                    <p>Email: xrxee@smail.nju.edu.cn </p>
+    
+            <!-- 第二行：学生 -->
+            <div class="row mt-4"> <!-- mt-4 增加上下间距 -->
+                <div class="col-sm-6">
+                    <div class="team-member">
+                        <h4><span class="navy">Li</span> Zehong</h4>
+                        <p>Master's Degree Candidate at Hangzhou Normal University</p>
+                        <p>Email: 2024112011033@hznu.edu.cn</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <h4><span class="navy">Li</span> Jiaxin</h4>
-                    <p>Ph.D. Candidate at Nanjing University.</p>
-                    <p>Email: lijiaxin@smail.nju.edu.cn </p>
+                <div class="col-sm-6">
+                    <div class="team-member">
+                        <h4><span class="navy">Zhu</span> Jiahao</h4>
+                        <p>Master's Degree Candidate at Hangzhou Normal University</p>
+                        <p>Email: 2023112011030@hznu.edu.cn</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
-<!-- <section id="ref" class="container services">
-    <div class="col-lg-12 text-center">
-        <h1>References</h1>
-    </div>
-
-    <p>J. Wang, R. Xue, J. Li, D. Ding, Y. Lin and Z. Ma, "
-        A Versatile Point Cloud Compressor 
-        Using Universal Multiscale Conditional Coding – Part I: Geometry," 
-        in IEEE Transactions on Pattern Analysis and Machine Intelligence, 
-        doi: 10.1109/TPAMI.2024.3462938.
-        </p>
-
-    <p>J. Wang, R. Xue, J. Li, D. Ding, Y. Lin and Z. Ma, "
-        A Versatile Point Cloud Compressor 
-        Using Universal Multiscale Conditional Coding – Part II: Attribute," 
-        in IEEE Transactions on Pattern Analysis and Machine Intelligence, 
-        doi: 10.1109/TPAMI.2024.3462945.
-        </p>
-</section> -->
-
-    
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/pace.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -580,35 +747,50 @@
 <script src="js/cbpAnimatedHeader.js"></script>
 <script src="js/wow.min.js"></script>
 <script src="js/inspinia.js"></script>
+
+<script>
+    function switchVersion(version) {
+        document.querySelectorAll('.version-content').forEach(el => {
+            el.classList.remove('active');
+        });
+        document.querySelectorAll(`.version-content[data-version="${version}"]`).forEach(el => {
+            el.classList.add('active');
+        });
+
+        document.getElementById('unicornVersionBtn').innerHTML = 'Unicorn ' + version + ' <i class="fa fa-chevron-down unicorn-version-arrow"></i>';
+
+        const menu = document.getElementById('versionDropdownMenu');
+        menu.classList.remove('show');
+        document.getElementById('unicornVersionBtn').classList.remove('dropdown-open');
+        
+        history.replaceState(null, '', `#${version}`);
+    }
+
+    const btn = document.getElementById('unicornVersionBtn');
+    const menu = document.getElementById('versionDropdownMenu');
+
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        menu.classList.toggle('show');
+        btn.classList.toggle('dropdown-open');
+    });
+
+    // 阻止点击菜单时冒泡到 document
+    menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    document.addEventListener('click', function() {
+        menu.classList.remove('show');
+        btn.classList.remove('dropdown-open');
+    });
+
+    window.addEventListener('load', () => {
+        const hash = window.location.hash.substring(1);
+        if (['v1', 'v3'].includes(hash)) {
+            switchVersion(hash);
+        }
+    });
+</script>
 </body>
 </html>
-
-
-<!-- <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@ARTICLE{10682571,
-        author={Wang, Jianqiang and Xue, Ruixiang and Li, Jiaxin and Ding, Dandan and Lin, Yi and Ma, Zhan},
-        journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-        title={A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding – Part I: Geometry}, 
-        year={2024},
-        volume={},
-        number={},
-        pages={1-18},
-        doi={10.1109/TPAMI.2024.3462938}      
-  }</code></pre>
-      
-      <pre><code>@article{10682571,
-        author={Wang, Jianqiang and Xue, Ruixiang and Li, Jiaxin and Ding, Dandan and Lin, Yi and Ma, Zhan},
-        journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-        title={A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding – Part I: Geometry}, 
-        year={2024},
-        volume={},
-        number={},
-        pages={1-18},
-        doi={10.1109/TPAMI.2024.3462938} 
-      }</code></pre>
-    </div>
-  </section> -->
-
-

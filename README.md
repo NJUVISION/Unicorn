@@ -1,6 +1,8 @@
 # Unicorn: A Versatile Point Cloud Compressor Using Universal Multiscale Conditional Coding
 
-**Abstract — ** A universal multiscale conditional coding framework, Unicorn, is proposed to compress the geometry and attribute of any given point cloud. Geometry compression is addressed in [Part I](https://ieeexplore.ieee.org/document/10682571) of this paper, while attribute compression is discussed in [Part II](https://ieeexplore.ieee.org/document/10682566).
+## Abstract
+
+A universal multiscale conditional coding framework, Unicorn, is proposed to compress the geometry and attribute of any given point cloud. Geometry compression is addressed in [Part I](https://ieeexplore.ieee.org/document/10682571) of this paper, while attribute compression is discussed in [Part II](https://ieeexplore.ieee.org/document/10682566).
 
 For geometry compression, we construct the multiscale sparse tensors of each voxelized point cloud frame and properly leverage lower-scale priors in the current and (previously processed) temporal reference frames to improve the conditional probability approximation or content-aware predictive reconstruction of geometry occupancy in compression.
 
@@ -13,7 +15,9 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 
 ## News
 
-* 2024.12.06 **Open source Unicorn Pre ([SparsePCGC](https://github.com/NJUVISION/SparsePCGC))!**
+* 2025.12.05 **Open source [Unicorn version 1](https://github.com/NJUVISION/Unicorn) and [version 2](https://github.com/NJUVISION/Unicorn)!**
+* 2025.12.04 Unicorn version 3 was accepted by TCSVT.
+* 2024.12.06 Open source Unicorn Pre ([SparsePCGC](https://github.com/NJUVISION/SparsePCGC))!
 * 2024.10.28 Unicorn version 2 has responded to the Call for Proposals for AI-based Point Cloud Coding (m70061 & m70062 in [MPEG](https://dms.mpeg.expert/)).
 * 2024.10.05 Initial release of part of the code and results. (The entire source code will be released to the public after the approval from the funding agency.)
 * 2024.09.12 Unicorn version 1 was accepted by TPAMI. (https://ieeexplore.ieee.org/document/10682571 and https://ieeexplore.ieee.org/document/10682566)
@@ -37,12 +41,7 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 (You can also access some of them on our NJU BOX. ( https://box.nju.edu.cn/d/2739fe997265478c8673/ ))
 
 
-(Note: The training dataset generation methods and the amount of training dataset are not required to be fixed. We provide some examples in `data_utils/datasets/READMe.sh` to show how to perform sampling, partition, quantization, and other operations on raw mesh or point cloud data to generate the training datasets.)
-
-## Results
-
-`./results`
-
+(Note: The training dataset generation methods and the amount of training dataset are not required to be fixed. We provide some examples in `Unicorn-family/Unicorn-v1/data_utils/datasets/README.sh` to show how to perform sampling, partition, quantization, and other operations on raw mesh or point cloud data to generate the training datasets.)
 
 ## Authors
 

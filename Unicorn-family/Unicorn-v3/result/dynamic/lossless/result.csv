@@ -1,0 +1,5 @@
+filedir,max_num,n_parts,enc_time,dec_time,bpp,"mseF,PSNR (p2point)","mseF,PSNR (p2plane)",resolution
+basketball_inter100,1250000,1,3.877,3.705,0.366,inf,inf,1023
+exercise_inter100,1250000,1,3.244,3.025,0.363,inf,inf,1023
+dancer_inter100,1250000,1,3.582,3.264,0.393,inf,inf,1023
+model_inter100,1250000,1,3.726,3.542,0.382,inf,inf,1023

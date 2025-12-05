@@ -1,0 +1,8 @@
+filedir,num_points,max_num,n_parts,enc_time,dec_time,bpp,memory(GB),"mseF,PSNR (p2point)","mseF,PSNR (p2plane)",resolution
+longdress_vox10_1300.ply,857966,1250000,1,3.285,2.6802,0.552479,4.98,inf,inf,1023
+loot_vox10_1200.ply,805285,1250000,1,2.9601,2.4381,0.526422,4.67,inf,inf,1023
+redandblack_vox10_1550.ply,757691,1250000,1,2.9466,2.448,0.618194,4.42,inf,inf,1023
+soldier_vox10_0690.ply,1089091,1250000,1,4.2313,2.9606,0.550345,6.3,inf,inf,1023
+exercise_vox11_00000001.ply,2391718,1250000,2,9.2673,7.7076,0.419879,7.48,inf,inf,2047
+basketball_player_vox11_00000200.ply,2925514,1250000,4,10.1916,9.1908,0.438093,5.5,inf,inf,2047
+dancer_vox11_00000001.ply,2592758,1250000,4,8.9586,7.8993,0.435484,4.88,inf,inf,2047
