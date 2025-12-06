@@ -34,7 +34,7 @@ These files are provided by Nanjing University [Vision Lab](https://vision.nju.
 * **Tong Chen**
 * **Jianqiang Wang**
 * **Ruixiang Xue**
-* **Jiaxing Li**
+* **Jiaxin Li**
 * **Junteng Zhang**
 * **Junzhe Zhang**
 * **Kang You**
