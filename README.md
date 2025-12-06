@@ -30,7 +30,7 @@ These files are provided by Nanjing University [Vision Lab](https://vision.nju.
 ## Our Team
 
 * **Zhan Ma**
-* **Dandan ding**
+* **Dandan Ding**
 * **Tong Chen**
 * **Jianqiang Wang**
 * **Ruixiang Xue**
@@ -39,6 +39,6 @@ These files are provided by Nanjing University [Vision Lab](https://vision.nju.
 * **Junzhe Zhang**
 * **Kang You**
 * **Wenxi Ma**
-* **Jiahao zhu**
+* **Jiahao Zhu**
 * **Zehong Li**
 * **Chengfeng Han**
