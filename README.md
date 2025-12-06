@@ -23,6 +23,22 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 * 2024.09.12 Unicorn version 1 was accepted by TPAMI. (https://ieeexplore.ieee.org/document/10682571 and https://ieeexplore.ieee.org/document/10682566)
 
 
-## Authors
+## Acknowledgements and Contact
 
 These files are provided by Nanjing University [Vision Lab](https://vision.nju.edu.cn/). Thanks to Prof. Dandan Ding from Hangzhou Normal University and Prof. Yi Lin from Fudan University for their help. Please contact us (mazhan@nju.edu.cn) if you have any questions.
+
+## Our Team
+
+* **Zhan Ma**
+* **Dandan ding**
+* **Tong Chen**
+* **Jianqiang Wang**
+* **Ruixiang Xue**
+* **Jiaxing Li**
+* **Junteng Zhang**
+* **Junzhe Zhang**
+* **Kang You**
+* **Wenxi Ma**
+* **Jiahao zhu**
+* **Zehong Li**
+* **Chengfeng Han**
