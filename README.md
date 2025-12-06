@@ -23,26 +23,6 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 * 2024.09.12 Unicorn version 1 was accepted by TPAMI. (https://ieeexplore.ieee.org/document/10682571 and https://ieeexplore.ieee.org/document/10682566)
 
 
-## Environment
-
-* pytorch, MinkowskiEngine, etc. 
-    * You can use docker to simply configure the environment: `docker pull jianqiang1995/pytorch:1.10.0-cuda11.1-cudnn8-devel`
-
-
-## Dataset
-
-* **ShapeNet**: https://shapenet.org/ 
-* **RWTT**: https://texturedmesh.isti.cnr.it/ 
-* **MPEG Dataset (Static Objects)**: http://mpegfs.int-evry.fr/MPEG/PCC/DataSets/pointCloud/CfP/datasets/ (MPEG password is required) 
-(You can also access some of them on our NJU BOX. ( https://box.nju.edu.cn/d/51327ae7c2644c0fa1c4/ ))
-* **MPEG Dataset (Dynamic Objects)**: https://mpeg-pcc.org/index.php/pcc-content-database/
-* **KITTI**: https://www.cvlibs.net/datasets/kitti/
-* **Ford**: https://mpegfs.int-evry.fr/ws-mpegcontent/MPEG-I/Part05-PointCloudCompression/dataSets_new/Dynamic_Acquisition/Ford  (MPEG password is required) 
-(You can also access some of them on our NJU BOX. ( https://box.nju.edu.cn/d/2739fe997265478c8673/ ))
-
-
-(Note: The training dataset generation methods and the amount of training dataset are not required to be fixed. We provide some examples in `Unicorn-family/Unicorn-v1/data_utils/datasets/README.sh` to show how to perform sampling, partition, quantization, and other operations on raw mesh or point cloud data to generate the training datasets.)
-
 ## Authors
 
 These files are provided by Nanjing University [Vision Lab](https://vision.nju.edu.cn/). Thanks to Prof. Dandan Ding from Hangzhou Normal University and Prof. Yi Lin from Fudan University for their help. Please contact us (mazhan@nju.edu.cn) if you have any questions.
