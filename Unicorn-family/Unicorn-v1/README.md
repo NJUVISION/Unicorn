@@ -34,7 +34,7 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 
 ## Pretrained Models
 
-* **ckpt**: https://box.nju.edu.cn/f/57095bcf44604dc2baed/?dl=1
+* **ckpt**: [https://box.nju.edu.cn/f/57095bcf44604dc2baed/?dl=1](https://box.nju.edu.cn/d/5393fa52f42c4d918576/)
 
 ## Results
 
