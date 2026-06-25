@@ -38,10 +38,10 @@ def get_test_geometry_cfg(parser):
 
 def get_test_attribute_cfg(parser):
     ####################### dataset cfg #######################
-    try:
+    if "--color_format" not in parser._option_string_actions:
         parser.add_argument("--color_format", type=str, default='yuv for lossy, ycocg for lossless')
+    if "--normalize" not in parser._option_string_actions:
         parser.add_argument("--normalize",  type=int, default=1, help="normalize rgb to [0,1] or not?")
-    except (argparse.ArgumentError) as e: print('conflicting option string')
     ####################### bitrates cfg #######################
     parser.add_argument("--num_bitrates", type=int, default=4)#
     parser.add_argument("--piecewise_variable_bitrates", type=str, default='')

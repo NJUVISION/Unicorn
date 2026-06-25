@@ -75,7 +75,7 @@ def read_ply_ascii(filedir, order='rgb', dtype_coords='int32', dtype_feats='int3
     return coords, feats
 
 def write_ply_ascii(filedir, coords, feats, dtype_coords='int32', dtype_feats='int32'):
-    if os.path.exists(filedir): os.system('rm '+filedir)
+    if os.path.exists(filedir): os.remove(filedir)
     f = open(filedir,'a+')
     f.writelines(['ply\n','format ascii 1.0\n'])
     f.write('element vertex '+str(coords.shape[0])+'\n')
@@ -126,5 +126,4 @@ def write_ply_o3d(filedir, coords, feats, dtype_coords='int32'):
     fo.writelines(lines)
 
     return
-
 

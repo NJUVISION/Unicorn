@@ -15,6 +15,7 @@ For more information, please visit our homepage: https://njuvision.github.io/Uni
 
 ## News
 
+* 2026.06.25 More model details and test scripts will be available in [Unicorn version 1](https://github.com/NJUVISION/Unicorn/tree/main/Unicorn-family/Unicorn-v1).
 * 2025.12.05 **Open source [Unicorn version 1](https://github.com/NJUVISION/Unicorn/tree/main/Unicorn-family/Unicorn-v1) and [version 2](https://github.com/NJUVISION/Unicorn/tree/main/Unicorn-family/Unicorn-v2)!**
 * 2025.12.04 Unicorn version 3 was accepted by TCSVT.
 * 2024.12.06 Open source Unicorn Pre ([SparsePCGC](https://github.com/NJUVISION/SparsePCGC))!
